@@ -25,9 +25,8 @@ public class DialActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String Dial =edtDial.getText().toString();
                 if (!TextUtils.isEmpty(Dial)){
-                    String Call="tel:"+Dial;
-                    Uri uri = Uri.parse(Call);
-                    Intent intent =new Intent(Intent.ACTION_DIAL,uri);
+
+                    Intent intent =new Intent(Intent.ACTION_DIAL,Uri.parse("tel:"+Dial));
                     startActivity(intent);
 
                 }
