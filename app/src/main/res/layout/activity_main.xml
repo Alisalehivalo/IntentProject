@@ -21,35 +21,7 @@
         android:text="Menu"
         android:textSize="30sp"/>
 
-    <Button
-        android:id="@+id/btnprofile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Profile"
-        android:background="@color/colorAccent"
-        android:layout_gravity="center"
-        android:layout_marginTop="80dp"
-        android:textSize="30sp"/>
 
-    <Button
-        android:id="@+id/btndial"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        android:text="Dial"
-        android:layout_gravity="center"
-        android:layout_marginTop="90dp"
-        android:textSize="30sp"/>
-
-    <Button
-        android:id="@+id/btnSms"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:text="SMS"
-        android:layout_gravity="center"
-        android:layout_marginTop="90dp"
-        android:textSize="30sp"/>
 </LinearLayout>
 
 <LinearLayout
@@ -59,6 +31,17 @@
 
     android:layout_gravity="left"
     android:background="#FFF"
-    android:orientation="vertical"></LinearLayout>
+    android:orientation="vertical">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+
+
+
+
+</LinearLayout>
 
 </androidx.drawerlayout.widget.DrawerLayout>
