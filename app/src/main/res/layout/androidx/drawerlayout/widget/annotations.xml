@@ -1,0 +1,7 @@
+<root>
+    <item name='androidx.drawerlayout.widget.DrawerLayout void openDrawer(int)'>
+        <annotation name='org.jetbrains.annotations.Contract'>
+            <val name="pure" val="true" />
+        </annotation>
+    </item>
+</root>

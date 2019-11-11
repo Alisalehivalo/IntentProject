@@ -14,17 +14,21 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
         ArrayList<String> list=new ArrayList<>();
         list.add("Profile");
         list.add("Dial");
         list.add("SMS");
         list.add("Search");
         list.add("Camera");
-
 
 
         Button btnMenu = findViewById(R.id.btnMenu);
@@ -39,10 +43,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 DrawerLayout drawerlayout = findViewById(R.id.drawerLayout);
-                drawerlayout.openDrawer(GravityCompat.START);
+               drawerlayout.openDrawer(GravityCompat.START);
 
             }
         });
 
+
+        }
+
     }
-}
+

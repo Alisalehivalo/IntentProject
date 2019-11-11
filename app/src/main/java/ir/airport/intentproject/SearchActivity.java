@@ -1,10 +1,13 @@
 package ir.airport.intentproject;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -17,11 +20,18 @@ import cz.msebera.android.httpclient.Header;
 
 
 public class SearchActivity extends AppCompatActivity {
+    String TAG = SearchActivity.class.getSimpleName();
 
+    sqllitehelper databaseHelper;
+
+    Boolean hasUserClickedOnBackBtn = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
+        setTitle("Add data to SQLite");
+
+
         Button btnSearch=findViewById(R.id.btnSearch);
         final EditText edtSearch = findViewById(R.id.edtSearch);
         final TextView title=findViewById(R.id.txtTitle);
@@ -33,7 +43,41 @@ public class SearchActivity extends AppCompatActivity {
         final TextView direc=findViewById(R.id.txtDirector);
         final TextView actor=findViewById(R.id.txtActors);
         final TextView plot=findViewById(R.id.txtPlot);
+        Button btnSave=findViewById(R.id.btnSave);
+        Button btnArchive=findViewById(R.id.btnShowArchive);
 
+
+        final sqllitehelper helper = new sqllitehelper(SearchActivity.this, "FilmDB", null, 1);
+
+
+btnSave.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        String Title=title.getText().toString();
+        String Year=year.getText().toString();
+        String Rated=rated.getText().toString();
+        String Released=releas.getText().toString();
+        String Runtime=run.getText().toString();
+        String Genre=genre.getText().toString();
+        String Director=direc.getText().toString();
+        String Actor=actor.getText().toString();
+        String Plot=plot.getText().toString();
+
+        helper.insertFilm(Title,Year,Rated,Released,Runtime,Genre,Director,Actor,Plot);
+        Toast.makeText(SearchActivity.this,"Saved Film data in Dtabase",Toast.LENGTH_SHORT).show();
+
+    }
+});
+
+        btnArchive.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(SearchActivity.this,ShowArchiveActivity.class);
+                v.getContext().startActivity(intent);
+
+
+            }
+        });
 
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,5 +129,20 @@ public class SearchActivity extends AppCompatActivity {
             }
         });
 
+    }
+    public void onBackPressed(){
+
+        if (hasUserClickedOnBackBtn == true)
+            super.onBackPressed();
+        else {
+            Toast.makeText(this, "Please press back again", Toast.LENGTH_SHORT).show();
+            hasUserClickedOnBackBtn = true;
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    hasUserClickedOnBackBtn = false;
+                }
+            }, 2000);
+        }
     }
 }
